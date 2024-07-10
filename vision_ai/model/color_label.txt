@@ -1,8 +1,0 @@
-0
-green
-blue
-white
-black
-pink
-violet
-orange
