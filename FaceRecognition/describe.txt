@@ -1,0 +1,42 @@
+1. 开发环境
+   * 开发平台：rpaspi
+   * 机器学习平台：tensorflow
+   * 神经网络库：keras
+2. 文档说明
+    1. action文件夹
+	    * action.py文件：定义了控制人形机器人运动的一些方法。
+        * uptech.py文件： 舵机控制接口，供action调用，该文件只能在我们编译的环境下使用。
+    2. data文件
+        人脸数据集，包括两种人脸数据集，grimace数据集和orl数据集，本项目采用的是orl数据集。
+    3. face_lib文件夹
+        * align_dlib.py文件：主要进行人脸对齐。
+		* shape_predictor_68_face_landmarks.dat：关键点提取模型。
+    4. font文件夹
+        中文字体格式文件。
+    5. haarcascades文件夹
+	    * haarcascade_frontalface_alt.xml：分类器文件haarcascade_frontalface_alt.xml，配合opencv进行人脸检测，
+	    * haarcascade_frontalface_alt2.xml：haar人脸特征分类器。
+	    * haarcascade_frontalface_default.xml：haar人脸特征分类器。
+    6. images文件夹
+        人脸录入之后的图片存放的文件夹，里面的图片是程序自动创建的，图片是196*196大小的经过对齐的jpg格式图片。每一个图片名字是一个数字，代表一张人脸。
+    7. model文件夹
+	    * facenet.py：获取人脸特征值
+	    * mobilenet_v2.py：神经网络模型。
+	    * weight.h5：训练的模型。
+    8. speech文件夹
+		* speech.py：调用科大讯飞接口进行语音合成。
+		* demo.mp3：合成的语音文件。
+    9. util文件夹
+	    * face_detector.py：创建人脸检测器。
+	    * generate.py：训练模型前的数据处理。
+	    * utils.py：对人脸录入的图片进行处理。		
+		* window_manager.py：窗口管理。
+    10. face_input.py文件
+        人脸录入。
+    11. face_recognition_1.py文件
+		人脸识别，播放声音。
+    12. face_recognition_2.py文件
+		人脸识别，播放声音，并控制机器人做动作。
+    13. train.py文件
+        模型训练。
+
