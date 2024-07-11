@@ -310,22 +310,25 @@ if __name__ == '__main__':
             ##print("flag:",flag,'-----',io_data[0],io_data[2])
             
             # flag = True (on-plat)
+            #判断是否在台上
             if flag:                #flag tai up tai down
                 table_flag = 0
                 # print("taishang")
 #                 print("if",end=".")
                # print(io_data)
-                controller.up.CDS_SetAngle(6, 532 - 45, servo_speed)
-                controller.up.CDS_SetAngle(7, 532 + 55, servo_speed)#20230607
+                #放下前舵机
+                controller.up.CDS_SetAngle(6, 550, servo_speed)
+                controller.up.CDS_SetAngle(7, 525, servo_speed)# 20230607
                 #debug---20230607
 #                 up.CDS_SetSpeed(1, speed)
 #                 up.CDS_SetSpeed(2, -speed)
 
-
+                #如果识别到前方为敌人或0
                 if tag_id == enemy or tag_id == 0 :
                     tagid_enemy_1 = 0
                     tagid_enemy = tagid_enemy + 1
                     print("tagid=enemy_1: ",tag_id)
+                    #冲
                     up.CDS_SetSpeed(1, crush_speed)
                     up.CDS_SetSpeed(2, -crush_speed)
 #                     if io_data[0] or io_data[2]:
@@ -366,6 +369,7 @@ if __name__ == '__main__':
                     
 
 #////////////////////////////////
+                #如果前方为我方
                 elif tag_id == my_id:
                     tagid_enemy = 0
                     tagid_enemy_1 = 0
@@ -380,53 +384,14 @@ if __name__ == '__main__':
                     up.CDS_SetSpeed(2, 0)
                     make_a_turn(1,1.2)
                     time.sleep(0.6)
-                    
+                #后方到边缘
                 elif io_data[0] or io_data[2]:#倒退
-                        
                     tagid_enemy = 0
                     tagid_enemy_1 = 0
                     up.CDS_SetSpeed(1, 0)
                     up.CDS_SetSpeed(2, 0)     #wu xu ting zhi
-
                     time.sleep(0.2)
-#                     if tag_id == enemy or tag_id == 0 :
-#                         print("tagid=1: ",tag_id)
-#                         up.CDS_SetSpeed(1, crush_speed)
-#                         up.CDS_SetSpeed(2, -crush_speed)
-#                         time.sleep(0.6)
-#                         while True:
-#                             if io_data[0] or io_data[2]:
-#                                 up.CDS_SetSpeed(1, 300)
-#                                 up.CDS_SetSpeed(2, -300)
-#                                 time.sleep(0.6)
-#                                 up.CDS_SetSpeed(1, -400)
-#                                 up.CDS_SetSpeed(2, 400)
-#                                 time.sleep(0.6)
-#                                 up.CDS_SetSpeed(1, 0)
-#                                 up.CDS_SetSpeed(2, 0)
-#                                 break
-#                             if io_data[6] or io_data[7]:
-#                                 up.CDS_SetSpeed(1, 0)
-#                                 up.CDS_SetSpeed(2, 0)
-#                                 break
-# 
-# 
-#                     elif tag_id == my_id:
-#                         print("tagid = 2",tag_id)
-#                         controller.up.CDS_SetAngle(6, servo_r, servo_speed)
-#                         controller.up.CDS_SetAngle(7, servo_l, servo_speed)
-#                     
-#                         up.CDS_SetSpeed(1, -speedl)
-#                         up.CDS_SetSpeed(2, speedl)
-#                         time.sleep(0.8)
-#                         up.CDS_SetSpeed(1, 0)
-#                         up.CDS_SetSpeed(2, 0)
-#                         make_a_turn(1,turn_tangle)
-#                         time.sleep(0.0)
-# 
-#                     
-#                         controller.up.CDS_SetAngle(6, 532, servo_speed)
-#                         controller.up.CDS_SetAngle(7, 532, servo_speed)  
+                    #右方为障碍物
                     if not io_data[4]:
                         print("down--right")
                         up.CDS_SetSpeed(1, -speedl)
@@ -436,20 +401,16 @@ if __name__ == '__main__':
                         if io_data[1] or io_data[3]:
                             up.CDS_SetSpeed(1, 0)
                             up.CDS_SetSpeed(2, 0)
-                        time.sleep(0.5)
-                        
-                        up.CDS_SetSpeed(1, 0)
-                        up.CDS_SetSpeed(2, 0)
-
-                        time.sleep(0.6)
+    
                         
                         up.CDS_SetSpeed(1, (speedl))
                         up.CDS_SetSpeed(2, (speedl))
-                        start_time = time.time()
-                        while True:
-                            current_time = time.time()
-                            if not io_data[6] or (current_time - start_time) >= 3:
-                                break
+                        time.sleep(0.5)
+                        # start_time = time.time()
+                        # while True:
+                        #     current_time = time.time()
+                        #     if not io_data[6] or (current_time - start_time) >= 3:
+                        #         break
                         
                         up.CDS_SetSpeed(1, 0)
                         up.CDS_SetSpeed(2, 0)
@@ -462,9 +423,8 @@ if __name__ == '__main__':
                         else:
                             time.sleep(0.2)
                         
-
+                    #左边为障碍物
                     elif not io_data[5]:
-                        
                         print("down--left")
                         up.CDS_SetSpeed(1, -speedl)
                         up.CDS_SetSpeed(2, speedl)
@@ -473,20 +433,14 @@ if __name__ == '__main__':
                         if io_data[1] or io_data[3]:
                             up.CDS_SetSpeed(1, 0)
                             up.CDS_SetSpeed(2, 0)
-                        time.sleep(0.5)
-                        
-                        
-                        up.CDS_SetSpeed(1, 0)
-                        up.CDS_SetSpeed(2, 0)
-                        
-                        time.sleep(0.6)
                         up.CDS_SetSpeed(1, -(speedl))
                         up.CDS_SetSpeed(2, -(speedl))
-                        start_time = time.time()
-                        while True:
-                            current_time = time.time()
-                            if not io_data[6] or (current_time - start_time) >= 3:
-                                break
+                        time.sleep(0.5)
+                        # start_time = time.time()
+                        # while True:
+                        #     current_time = time.time()
+                        #     if not io_data[6] or (current_time - start_time) >= 3:
+                        #         break
                         up.CDS_SetSpeed(1, 0)
                         up.CDS_SetSpeed(2, 0)
                         if io_data[3] and not io_data[2]:
@@ -511,16 +465,19 @@ if __name__ == '__main__':
                             time.sleep(0.4)
                             up.CDS_SetSpeed(1, -(speedl))
                             up.CDS_SetSpeed(2, -(speedl))
-                        start_time = time.time()
-                        while True:
-                            current_time = time.time()
-                            if not io_data[6] or (current_time - start_time) >= 3:
-                                break
+                            time.sleep(0.5)
+                        # start_time = time.time()
+                        # while True:
+                        #     current_time = time.time()
+                        #     if not io_data[6] or (current_time - start_time) >= 3:
+                        #         break
                         up.CDS_SetSpeed(1, 0)
                         up.CDS_SetSpeed(2, 0)
                         time.sleep(0.2)
+                    #前方为障碍物
                     elif not io_data[6] and not io_data[7]:
                         time.sleep(0.5)
+                        #我方箱子
                         if tag_id == my_id:
                             down_tagid_enemy = 0
                             print("down_67_my")
@@ -531,6 +488,7 @@ if __name__ == '__main__':
                             up.CDS_SetSpeed(2, 0)
                             make_a_turn(1,turn_tangle+0.4)
                             time.sleep(0.4)
+                        #敌方或中立箱子
                         if tag_id == enemy or tag_id == 0:
                             down_tagid_enemy = down_tagid_enemy + 1 
                             print("down_67  enemy")
@@ -581,14 +539,17 @@ if __name__ == '__main__':
                         
                         time.sleep(0.1)    
                         
+                #后方为边缘
                 elif io_data[1] or io_data[3]:#up jiaoluo
                     tagid_enemy = 0
                     tagid_enemy_1 =0
+                    #右边为障碍物
                     if not io_data[4]:
                         print("up--right")
                         up.CDS_SetSpeed(1, speedl)
                         up.CDS_SetSpeed(2, -speedl)
                         time.sleep(0.4)
+                        #前方为障碍物
                         if io_data[0] or io_data[2]:
                             up.CDS_SetSpeed(1, 0)
                             up.CDS_SetSpeed(2, 0)
@@ -673,11 +634,12 @@ if __name__ == '__main__':
                     time.sleep(0.4)
                     up.CDS_SetSpeed(1, (speedl+50))
                     up.CDS_SetSpeed(2, (speedl+50))
-                    start_time = time.time()
-                    while True:
-                        current_time = time.time()
-                        if not io_data[6] or (current_time - start_time) >= 3:
-                            break
+                    time.sleep(0.5)
+                    # start_time = time.time()
+                    # while True:
+                    #     current_time = time.time()
+                    #     if not io_data[6] or (current_time - start_time) >= 3:
+                    #         break
                     up.CDS_SetSpeed(1, 0)
                     up.CDS_SetSpeed(2, 0)
                     time.sleep(0.2)
@@ -690,11 +652,12 @@ if __name__ == '__main__':
                     time.sleep(0.4)
                     up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, -(speedl))
-                    start_time = time.time()
-                    while True:
-                        current_time = time.time()
-                        if not io_data[6] or (current_time - start_time) >= 3:
-                            break
+                    time.sleep(0.5)
+                    # start_time = time.time()
+                    # while True:
+                    #     current_time = time.time()
+                    #     if not io_data[6] or (current_time - start_time) >= 3:
+                    #         break
                     up.CDS_SetSpeed(1, 0)
                     up.CDS_SetSpeed(2, 0)
                     time.sleep(0.2)
