@@ -1,6 +1,6 @@
 '''
   Ver:  xiu-gai ff_12_fs+bs01.py
-  Date: 2023-06-12-----
+  Date: 2024-07-11-----
   ccd is testing......
 '''
 
