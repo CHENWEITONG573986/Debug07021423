@@ -20,7 +20,7 @@ controller = UpController()
 
 thresh = 26    #yu zhi
 
-servo_speed = 800
+servo_speed = 1000
 #### shexiangtou id 
 
 my_id = 2
@@ -48,7 +48,7 @@ speed = 512     #walking slow=400,quick = 520,middle=460
 speedl = 450
 # speedl = 600
 # 512 576
-crush_speed = 600
+crush_speed = 650
 #crush_speed = 770
 # 800 700
 # 768
@@ -317,12 +317,12 @@ if __name__ == '__main__':
 #                 print("if",end=".")
                # print(io_data)
                 #放下前舵机
-                controller.up.CDS_SetAngle(6, 550, servo_speed)
-                controller.up.CDS_SetAngle(7, 525, servo_speed)# 20230607
+                controller.up.CDS_SetAngle(6, 600, servo_speed)
+                controller.up.CDS_SetAngle(7, 475, servo_speed)# 20230607
                 #debug---20230607
 #                 up.CDS_SetSpeed(1, speed)
 #                 up.CDS_SetSpeed(2, -speed)
-
+                
                 #如果识别到前方为敌人或0
                 if tag_id == enemy or tag_id == 0 :
                     tagid_enemy_1 = 0
@@ -405,7 +405,7 @@ if __name__ == '__main__':
                         
                         up.CDS_SetSpeed(1, (speedl))
                         up.CDS_SetSpeed(2, (speedl))
-                        time.sleep(0.5)
+                        time.sleep(0.8)
                         # start_time = time.time()
                         # while True:
                         #     current_time = time.time()
@@ -435,7 +435,7 @@ if __name__ == '__main__':
                             up.CDS_SetSpeed(2, 0)
                         up.CDS_SetSpeed(1, -(speedl))
                         up.CDS_SetSpeed(2, -(speedl))
-                        time.sleep(0.5)
+                        time.sleep(0.8)
                         # start_time = time.time()
                         # while True:
                         #     current_time = time.time()
@@ -465,7 +465,7 @@ if __name__ == '__main__':
                             time.sleep(0.4)
                             up.CDS_SetSpeed(1, -(speedl))
                             up.CDS_SetSpeed(2, -(speedl))
-                            time.sleep(0.5)
+                            time.sleep(0.8)
                         # start_time = time.time()
                         # while True:
                         #     current_time = time.time()
@@ -634,7 +634,7 @@ if __name__ == '__main__':
                     time.sleep(0.4)
                     up.CDS_SetSpeed(1, (speedl+50))
                     up.CDS_SetSpeed(2, (speedl+50))
-                    time.sleep(0.5)
+                    time.sleep(0.8)
                     # start_time = time.time()
                     # while True:
                     #     current_time = time.time()
@@ -652,7 +652,7 @@ if __name__ == '__main__':
                     time.sleep(0.4)
                     up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, -(speedl))
-                    time.sleep(0.5)
+                    time.sleep(0.8)
                     # start_time = time.time()
                     # while True:
                     #     current_time = time.time()
@@ -764,8 +764,8 @@ if __name__ == '__main__':
                     tagid_enemy = 0
                     tagid_enemy_1 = 0
 #                     print("other")
-                    up.CDS_SetSpeed(1, speed)
-                    up.CDS_SetSpeed(2, -speed)
+                    up.CDS_SetSpeed(1, crush_speed)
+                    up.CDS_SetSpeed(2, -crush_speed)
             # flag = False (down-plat)
             elif flag == 10:
                 print("10")
