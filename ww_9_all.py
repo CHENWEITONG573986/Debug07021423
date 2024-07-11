@@ -3,7 +3,7 @@
   Date: 2023-06-12-----
   ccd is testing......
 '''
-# 66666666666666666666
+
 from up_controller import UpController
 import uptech
 import time
@@ -23,8 +23,8 @@ thresh = 26    #yu zhi
 servo_speed = 800
 #### shexiangtou id 
 
-my_id = 1
-enemy = 0
+my_id = 2
+enemy = 1
 
 table_flag = 1
 count_time = 0
@@ -94,9 +94,6 @@ camera_id = 0
 def get_qr_value():
     global camera_id
     cap = cv2.VideoCapture(camera_id)
-    if not cap.isOpened():
-        print("Cannot open camera")
-        exit()
     at_detector = apriltag.Detector(apriltag.DetectorOptions(families='tag36h11 tag25h9'))
     global tag_id
     w = 640#640
@@ -325,7 +322,7 @@ if __name__ == '__main__':
 #                 up.CDS_SetSpeed(2, -speed)
 
 
-                if tag_id == enemy:
+                if tag_id == enemy or tag_id == 0 :
                     tagid_enemy_1 = 0
                     tagid_enemy = tagid_enemy + 1
                     print("tagid=enemy_1: ",tag_id)
@@ -534,7 +531,7 @@ if __name__ == '__main__':
                             up.CDS_SetSpeed(2, 0)
                             make_a_turn(1,turn_tangle+0.4)
                             time.sleep(0.4)
-                        if tag_id == enemy:
+                        if tag_id == enemy or tag_id == 0:
                             down_tagid_enemy = down_tagid_enemy + 1 
                             print("down_67  enemy")
                             if down_tagid_enemy == 2:
@@ -733,7 +730,7 @@ if __name__ == '__main__':
 #                             print("tagid=1: ",tag_id)
 #                             up.CDS_SetSpeed(1, crush_speed)
 #                             up.CDS_SetSpeed(2, -crush_speed)
-                    elif tag_id == enemy:
+                    elif tag_id == enemy or tag_id == 0 :
                         tagid_enemy_1 = tagid_enemy_1 + 1
                         print("tagid=ennmy_2: ",tag_id)
                         up.CDS_SetSpeed(1, crush_speed)
