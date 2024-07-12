@@ -40,7 +40,7 @@ tx_speed = 450
 st_speed = 680
 # st_speed = 700
 
-turn_speed = 700      # down plat turn spwwd to search plat.
+turn_speed = 600      # down plat turn spwwd to search plat.
 
 # speed = -570
 speed = 512     #walking slow=400,quick = 520,middle=460
@@ -317,8 +317,8 @@ if __name__ == '__main__':
 #                 print("if",end=".")
                # print(io_data)
                 #放下前舵机
-                controller.up.CDS_SetAngle(6, 600, servo_speed)
-                controller.up.CDS_SetAngle(7, 475, servo_speed)# 20230607
+                controller.up.CDS_SetAngle(6, 500, servo_speed)
+                controller.up.CDS_SetAngle(7, 575, servo_speed)# 20230607
                 #debug---20230607
 #                 up.CDS_SetSpeed(1, speed)
 #                 up.CDS_SetSpeed(2, -speed)
@@ -396,7 +396,7 @@ if __name__ == '__main__':
                         print("down--right")
                         up.CDS_SetSpeed(1, -speedl)
                         up.CDS_SetSpeed(2, speedl)
-                        time.sleep(0.4)
+                        time.sleep(0.6)
 
                         if io_data[1] or io_data[3]:
                             up.CDS_SetSpeed(1, 0)
@@ -428,7 +428,7 @@ if __name__ == '__main__':
                         print("down--left")
                         up.CDS_SetSpeed(1, -speedl)
                         up.CDS_SetSpeed(2, speedl)
-                        time.sleep(0.4)
+                        time.sleep(0.6)
 
                         if io_data[1] or io_data[3]:
                             up.CDS_SetSpeed(1, 0)
@@ -548,7 +548,7 @@ if __name__ == '__main__':
                         print("up--right")
                         up.CDS_SetSpeed(1, speedl)
                         up.CDS_SetSpeed(2, -speedl)
-                        time.sleep(0.4)
+                        time.sleep(0.6)
                         #前方为障碍物
                         if io_data[0] or io_data[2]:
                             up.CDS_SetSpeed(1, 0)
@@ -577,7 +577,7 @@ if __name__ == '__main__':
                         print("up--left")
                         up.CDS_SetSpeed(1, speedl)
                         up.CDS_SetSpeed(2, -speedl)
-                        time.sleep(0.4)
+                        time.sleep(0.6)
                         if io_data[0] or io_data[2]:
                             up.CDS_SetSpeed(1, 0)
                             up.CDS_SetSpeed(2, 0)
@@ -630,8 +630,8 @@ if __name__ == '__main__':
       #              if not io_data[4] and io_data[6] and io_data[7] and state_flag:
                     print('---right')
                     up.CDS_SetSpeed(1, -speedl)
-                    up.CDS_SetSpeed(2, (speedl+100))
-                    time.sleep(0.4)
+                    up.CDS_SetSpeed(2, (speedl))
+                    time.sleep(0.8)
                     up.CDS_SetSpeed(1, (speedl+50))
                     up.CDS_SetSpeed(2, (speedl+50))
                     time.sleep(0.8)
@@ -647,9 +647,9 @@ if __name__ == '__main__':
                     tagid_enemy = 0
                     tagid_enemy_1 = 0
                     print('---left')
-                    up.CDS_SetSpeed(1, -(speedl+100))
+                    up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, speedl)
-                    time.sleep(0.4)
+                    time.sleep(0.)
                     up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, -(speedl))
                     time.sleep(0.8)
@@ -767,26 +767,26 @@ if __name__ == '__main__':
                     up.CDS_SetSpeed(1, crush_speed)
                     up.CDS_SetSpeed(2, -crush_speed)
             # flag = False (down-plat)
-            elif flag == 10:
-                print("10")
-                up.CDS_SetSpeed(1, 1000)
-                up.CDS_SetSpeed(2, -1000)
-                time.sleep(1.0)
-                up.CDS_SetSpeed(1, 1000)
-                up.CDS_SetSpeed(2, 1000)
-                time.sleep(1.5)
-                up.CDS_SetSpeed(1, 0)
-                up.CDS_SetSpeed(2, 0)
-            elif flag == 32:
-                print("32")
-                up.CDS_SetSpeed(1, -1000)
-                up.CDS_SetSpeed(2, -1000)
-                time.sleep(1.0)
-                up.CDS_SetSpeed(1, -1000)
-                up.CDS_SetSpeed(2, -1000)
-                time.sleep(1.5)
-                up.CDS_SetSpeed(1, 0)
-                up.CDS_SetSpeed(2, 0)
+            # elif flag == 10:
+            #     print("10")
+            #     up.CDS_SetSpeed(1, 1000)
+            #     up.CDS_SetSpeed(2, -1000)
+            #     time.sleep(1.0)
+            #     up.CDS_SetSpeed(1, 1000)
+            #     up.CDS_SetSpeed(2, 1000)
+            #     time.sleep(1.5)
+            #     up.CDS_SetSpeed(1, 0)
+            #     up.CDS_SetSpeed(2, 0)
+            # elif flag == 32:
+            #     print("32")
+            #     up.CDS_SetSpeed(1, -1000)
+            #     up.CDS_SetSpeed(2, -1000)
+            #     time.sleep(1.0)
+            #     up.CDS_SetSpeed(1, -1000)
+            #     up.CDS_SetSpeed(2, -1000)
+            #     time.sleep(1.5)
+            #     up.CDS_SetSpeed(1, 0)
+            #     up.CDS_SetSpeed(2, 0)
             else:
                 table_flag = 1
                 # print("taixia ")
