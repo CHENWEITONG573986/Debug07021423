@@ -48,7 +48,7 @@ speed = 512     #walking slow=400,quick = 520,middle=460
 speedl = 450
 # speedl = 600
 # 512 576
-crush_speed = 650
+crush_speed = 600
 #crush_speed = 770
 # 800 700
 # 768
@@ -213,9 +213,9 @@ def st():
     # reset all
     controller.up.CDS_SetAngle(4, servo_r, servo_speed)
     controller.up.CDS_SetAngle(5, servo_l, servo_speed)
-    controller.up.CDS_SetAngle(6, servo_r, servo_speed)
-    controller.up.CDS_SetAngle(7, servo_l, servo_speed)
-    make_a_turn(1,1.0)
+    controller.up.CDS_SetAngle(6, 500, servo_speed)
+    controller.up.CDS_SetAngle(7, 575, servo_speed)
+    make_a_turn(1,1.2)
     time.sleep(0.2)
     while True:
         if io_data[0] or io_data[2]:
@@ -317,8 +317,9 @@ if __name__ == '__main__':
 #                 print("if",end=".")
                # print(io_data)
                 #放下前舵机
-                controller.up.CDS_SetAngle(6, 500, servo_speed)
-                controller.up.CDS_SetAngle(7, 575, servo_speed)# 20230607
+                print("台上")
+                controller.up.CDS_SetAngle(6, 490, servo_speed)
+                controller.up.CDS_SetAngle(7, 590, servo_speed)# 20230607
                 #debug---20230607
 #                 up.CDS_SetSpeed(1, speed)
 #                 up.CDS_SetSpeed(2, -speed)
@@ -515,12 +516,12 @@ if __name__ == '__main__':
                         down_tagid_enemy = 0
                         print("down")
                         up.CDS_SetSpeed(1, -speedl)
-                        up.CDS_SetSpeed(2, speedl)#20230525
+                        up.CDS_SetSpeed(2, speedl)# 20230525
                         time.sleep(0.6)
                         
                         up.CDS_SetSpeed(1, 0)
                         up.CDS_SetSpeed(2, 0)
-                        time.sleep(0.0)
+
                         
                         if io_data[1]:
                                 up.CDS_SetSpeed(1, -speedl)
@@ -631,10 +632,10 @@ if __name__ == '__main__':
                     print('---right')
                     up.CDS_SetSpeed(1, -speedl)
                     up.CDS_SetSpeed(2, (speedl))
-                    time.sleep(0.8)
+                    time.sleep(1)
                     up.CDS_SetSpeed(1, (speedl+50))
                     up.CDS_SetSpeed(2, (speedl+50))
-                    time.sleep(0.8)
+                    time.sleep(0.5)
                     # start_time = time.time()
                     # while True:
                     #     current_time = time.time()
@@ -649,10 +650,10 @@ if __name__ == '__main__':
                     print('---left')
                     up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, speedl)
-                    time.sleep(0.)
+                    time.sleep(1)
                     up.CDS_SetSpeed(1, -(speedl))
                     up.CDS_SetSpeed(2, -(speedl))
-                    time.sleep(0.8)
+                    time.sleep(0.5)
                     # start_time = time.time()
                     # while True:
                     #     current_time = time.time()
@@ -787,7 +788,9 @@ if __name__ == '__main__':
             #     time.sleep(1.5)
             #     up.CDS_SetSpeed(1, 0)
             #     up.CDS_SetSpeed(2, 0)
+            #在台下
             else:
+                print("台下")
                 table_flag = 1
                 # print("taixia ")
                 # front zhuazi up (90du)
